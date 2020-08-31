@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import uuid from 'uuid/v4'
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 const itemsFromBackend = [
   {
-    id: uuid(),
+    id: uuidv4(),
     content: 'first task'
   },
   {
-    id: uuid(),
+    id: uuidv4(),
     content: 'second task'
   }
 ]
 const columnsFromBackend = {
-  [uuid()]: {
+  [uuidv4()]: {
     name: 'ToDo',
     items: itemsFromBackend
   }
