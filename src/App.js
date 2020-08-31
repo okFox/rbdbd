@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import uuid from 'uuid/v4'
 import './App.css';
+
+const itemsFromBackend = [
+  {
+    id: uuid(),
+    content: 'first task'
+  },
+  {
+    id: uuid(),
+    content: 'second task'
+  }
+]
+const columnsFromBackend = {
+  [uuid()]: {
+    name: 'ToDo',
+    items: itemsFromBackend
+  }
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+
+      <DragDropContext onDragEnd={result => console.log(result)}>
+
+      </DragDropContext>
     </div>
   );
 }
