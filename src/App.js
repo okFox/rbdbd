@@ -3,6 +3,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
+//https://www.youtube.com/watch?v=Vqa9NMzF3wc&t=1s
 const itemsFromBackend = [
   {
     id: uuidv4(),
@@ -43,6 +44,32 @@ function App() {
                       width: 250,
                       minHeight: 500
                     }} >
+                      {column.items.map((item, index) => {
+                        return (
+                          <Draggable key={item.id} draggableId={item.id} index={index}>
+                            {(provided, snapshot) => {
+                              return (
+                                <div 
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                ref={provided.innerRef}
+                                style={{
+                                  userSelect: 'none',
+                                  padding: 16,
+                                  margin: '0 0 8px 0',
+                                  minHeight: '50px',
+                                  backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
+                                  ...provided.draggableProps.style
+                                }}>
+                                  
+                                  { item.content }
+
+                                </div>
+                              )
+                            }}
+                          </Draggable>
+                        )
+                      })}
                   </div>
                 )
               }}
