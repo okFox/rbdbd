@@ -16,8 +16,12 @@ const itemsFromBackend = [
 ]
 const columnsFromBackend = {
   [uuidv4()]: {
-    name: 'ToDo',
+    name: 'To Do',
     items: itemsFromBackend
+  },
+  [uuidv4()]: {
+    name: 'In Progress',
+    items: []
   }
 }
 
@@ -48,13 +52,13 @@ function App() {
   const [columns, setColumns] = useState(columnsFromBackend);
 
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
+    <div style={{ display: 'flex', justifyContent: 'center', height: '100%'}}>
 
       <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([id, column]) => {
           return (
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+              <h2>{ column.name }</h2>
             <Droppable droppableId={id} key={id}>
               {(provided, snapshot) => {
                 return (
@@ -91,18 +95,23 @@ function App() {
                               )
                             }}
                           </Draggable>
+                        
                         )
+                        
                       })}
+                      
                       {provided.placeholder}
-                  </div>
-                )
-              }}
+                      </div>
+                )}}
             </Droppable>
+            </div>
           )
-        })}
+  })}
+                    
       </DragDropContext>
-    </div>
-  );
-}
+    
+        
+      </div>
+)};
 
 export default App;
