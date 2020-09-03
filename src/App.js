@@ -59,6 +59,7 @@ function App() {
           return (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <h2>{ column.name }</h2>
+              <div style={{margin: 8}}>
             <Droppable droppableId={id} key={id}>
               {(provided, snapshot) => {
                 return (
@@ -69,7 +70,8 @@ function App() {
                       background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
                       padding: 4,
                       width: 250,
-                      minHeight: 500
+                      minHeight: 500,
+                      borderRadius: '5px'
                     }} >
                       {column.items.map((item, index) => {
                         return (
@@ -85,6 +87,7 @@ function App() {
                                   padding: 16,
                                   margin: '0 0 8px 0',
                                   minHeight: '50px',
+                                  borderRadius: '5px',
                                   backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
                                   ...provided.draggableProps.style
                                 }}>
@@ -104,6 +107,7 @@ function App() {
                       </div>
                 )}}
             </Droppable>
+            </div>
             </div>
           )
   })}
